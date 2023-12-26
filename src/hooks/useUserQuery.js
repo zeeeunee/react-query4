@@ -1,15 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 
-const fetchUser = async () => {
-	const response = await fetch('https://jsonplaceholder.typicode.com/user');
+const fetchUser = async ({ queryKey }) => {
+	console.log(queryKey);
+	const response = await fetch('https://jsonplaceholder.typicode.com/users');
 	return await response.json();
 };
 
-export const useUserQuery = () => {
-	return useQuery(['users'], fetchUser, {
+export const useUserQuery = (num) => {
+	//useQuery첫번째 인수로 넣는 값은 무조건 fetching함수로 전달됨
+	//useQuery에는 쿼리키가 동일하면 같은 데이터라고 인지하기 때문에 refetching처리를 안함
+	return useQuery(['users', num], fetchUser, {
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
 		cacheTime: 1000 * 5,
+		staleTime: 1000 * 0,
 	});
 };
 
