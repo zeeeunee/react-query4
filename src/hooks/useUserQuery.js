@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-//특정 순번의 서버 데이터 가져오는 fetching fucn, custom hook (useQuery)
+//특정 순번의 서버 데이터 가져오는 fetching func, custom hook (useQuery)
 //데이터 목록 호출 함수
 const fetchUser = async ({ queryKey }) => {
 	const response = await fetch(`https://jsonplaceholder.typicode.com/users/${queryKey[1]}`);
