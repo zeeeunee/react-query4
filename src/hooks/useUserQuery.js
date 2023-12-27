@@ -10,10 +10,10 @@ const fetchUser = async ({ queryKey }) => {
 //순서2. 컴포넌트에서 해당 훅 호출시 고유쿼리를 등록하면서 num 값을 전달해서 fetching함수 호출
 //반환된 데이터값이 옵션값에 따라 caching처리되면서 반환됨
 //데이터 목록 호출 커스텀훅
-export const useUserQuery = () => {
-	return useQuery(['users'], fetchUser, {
+export const useUserQuery = (num) => {
+	return useQuery(['users', num], fetchUser, {
 		refetchOnWindowFocus: false,
-		refetchOnMount: false,
+		refetchOnMount: true,
 		cacheTime: 1000 * 20,
 		staleTime: 1000 * 5,
 	});
@@ -24,7 +24,7 @@ export const useUserQuery = () => {
 //기존 서버데이터 update함수
 export const updateUser = async ([userName, num]) => {
 	const response = await fetch(`https://jsonplaceholder.typicode.com/${num}`, {
-		method: 'PUT',
+		method: 'PATCH',
 		body: JSON.stringify({
 			name: userName,
 		}),

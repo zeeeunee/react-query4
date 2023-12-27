@@ -7,7 +7,7 @@ export default function UserName() {
 	const updateUser = useUpdateUser();
 	const [UserName, setUserName] = useState('');
 
-	//순서4. 폼 전송이벤트 발생시 input에 있는 변경할 사용자 이름과 변경할 데이터 순번을 배열로 묶어서 update 커스텀 훅으로 활성화시킨 useMutation객ㄱ체를 가져와서 mutate 메서드에 인수로 전달
+	//순서4. 폼 전송이벤트 발생시 input에 있는 변경할 사용자 이름과 변경할 데이터 순번을 배열로 묶어서 update 커스텀 훅으로 활성화시킨 useMutation객체를 가져와서 mutate 메서드에 인수로 전달
 	const handlesubmit = (e) => {
 		e.proventDefault();
 		updateUser.mutate([UserName, 2]);
